@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Vue Js - HelloWorld App</title>
+
+    <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+    <!-- Using via Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- https://tailwindcss.com/docs/installation -->
+    <!-- Using Tailwind via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+    <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!--ValidateJS CDN-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>  
+</head>
+
+<body class="bg-black bg-opacity-30">
+    <div id="app">
+        <form @submit.prevent="checkForm">
+            <div class="h-screen flex flex-col justify-center items-center">
+                <div class="w-2/5 h-72 bg-white p-4 flex-col rounded-t-xl">
+                    <div class="h-32">
+                        <img v-bind:src="cover" class="w-full rounded-t-xl">
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="absolute rounded-full border-4 border-white p-1"> <img v-bind:src="image" class="rounded-full"> </div>
+                    </div>
+                </div>
+                <div class="flex bg-white w-2/5 pb-8 rounded-b-xl">
+                    <div class="w-2/5 pl-6">
+                        <div class="text-center">
+                            <h4 class="text-xl py-2">{{title}} {{fullname}}</h4> 
+                            <div class="text-lg py-2">{{state}}</div>
+                            <button class="bg-blue-400 my-2 w-16 h-8 text-white rounded-md">Follow</button>
+                            <div class="flex justify-between items-center mt-4 px-4">
+                                <div>
+                                    <h6 class="mb-0 font-bold">Followers</h6> <span>{{followers}}</span>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 font-bold">Projects</h6> <span>{{projects}}</span>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 font-bold">Ranks</h6> <span>{{ranks}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-2/4 pl-10">
+                        <p v-if="errors" class="text-red-500">
+                            <ul>
+                                <li v-for="error in errors" class="text-red-500">{{ error }}</li> 
+                            </ul>
+                        </p>
+                        <div class="bg-white">
+                            <div class="p-1 flex justify-between">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" v-model="username" name="username" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" v-model="email" name="email" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" v-model="password" name="password" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="fullname">Fullname</label>
+                                <input type="text" id="fullname" v-model.lazy="fullname" name="fullname" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" v-model.lazy="title" name="title" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="state">State</label>
+                                <input type="text" id="state" v-model.lazy="state" name="state" class="ml-3 border-2 border-gray-400 rounded-md">
+                            </div>
+                            <div class="p-1 flex justify-between">
+                                <label for="chosenlanguage">Language</label>
+                                <select id="chosenlanguage" v-model="chosenlanguage" name="chosenlanguage" class="ml-3 border-2 border-gray-400 rounded-md"> 
+                                <option v-for="language in languages" :value="language.language_id">
+                                    {{language.language_name}}
+                                </option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="submit" value="Submit" class="bg-black bg-opacity-60 my-2 w-16 h-8 text-white rounded-md">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>                            
+        </form>
+    </div>
+    <!-- my main.js -->
+    <script src="./profile.js"></script>
+</body>
+
+</html>
